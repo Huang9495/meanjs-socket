@@ -4,6 +4,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, Articles, socket) {
 		$scope.authentication = Authentication;
 
+        console.log('loaded client controller containing socket reference ....');
         $scope.socketMessages = [];
 
         //[mo]
@@ -12,6 +13,13 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
             $scope.socketMessages.push({title:article.title, user:article.user});
             console.log('socketMessage count: ' + $scope.socketMessages.length);
         });
+
+        //[mo]
+        $scope.transmitMessage = '';
+        $scope.transmit = function(){
+            console.log('WebSocket outgoing: '+ $scope.transmitMessage );
+            socket.emit('transmit.message', $scope.transmitMessage);
+        };
 
 		$scope.create = function() {
 			var article = new Articles({

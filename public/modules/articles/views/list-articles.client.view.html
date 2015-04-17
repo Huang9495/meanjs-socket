@@ -24,4 +24,12 @@
             <div class="col-md-6">{{mess.user}}</div>
         </div>
     </div>
+
+    <div class="alert alert-danger text-center">
+        <div class="controls">
+            <input name="title" type="text" data-ng-model="transmitMessage" id="title" class="form-control" placeholder="Title" required>
+            <a class="btn btn-primary" ng-click="transmit()">send</a>
+        </div>
+    </div>
+
 </section>

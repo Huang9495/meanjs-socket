@@ -167,6 +167,23 @@ module.exports = function(db) {
     app.set('socketio', io);
     app.set('server', server);
 
-	// Return Express server instance
+    //[mo]
+    io.on('connection', function(){
+        console.log('user has connectected......');
+    });
+
+    io.sockets.on('connection', function(){
+        console.log('individual has connected');
+    });
+
+    //[mo] receive message from client
+    io.sockets.on('connection', function(socket){
+        socket.on('transmit.message', function(message){
+            console.log('individual has sent message: '+ message);
+        });
+    });
+
+
+    // Return Express server instance
 	return app;
 };
