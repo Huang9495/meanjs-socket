@@ -17,4 +17,11 @@
 	<div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
 		No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
 	</div>
+
+    <div class="alert alert-success text-center">
+        <div ng-repeat="mess in socketMessages">
+            <div class="col-md-6">{{mess.title}}</div>
+            <div class="col-md-6">{{mess.user}}</div>
+        </div>
+    </div>
 </section>

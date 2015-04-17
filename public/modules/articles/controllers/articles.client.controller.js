@@ -4,9 +4,13 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, Articles, socket) {
 		$scope.authentication = Authentication;
 
+        $scope.socketMessages = [];
+
         //[mo]
         socket.on('article.created', function(article) {
             console.log('WebSocketMagic: '+ JSON.stringify(article) );
+            $scope.socketMessages.push({title:article.title, user:article.user});
+            console.log('socketMessage count: ' + $scope.socketMessages.length);
         });
 
 		$scope.create = function() {
